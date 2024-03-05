@@ -4,6 +4,8 @@ import geoJson from "../../../data/world-50m.v1.json";
 import { BlockContentWrap, BlockTitle } from "../../../styles/global/default";
 import { SALES_MAP_DATA } from "../../../data/mockData";
 
+// REFERENCE LINK FOR WORLD50M JSON USAGE: https://gist.github.com/abrahamdu/50147e692857054c2bf88c443946e8a5
+
 // Mapping of color names to their respective hex codes
 const COLOR_MAP = {
   red: "#ef4444",
