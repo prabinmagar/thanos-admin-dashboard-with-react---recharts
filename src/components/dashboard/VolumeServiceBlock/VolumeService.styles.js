@@ -19,29 +19,6 @@ export const VolumeServiceWrap = styled.div`
       }
     }
 
-    .recharts-legend-item-text {
-      text-transform: capitalize;
-      color: #a5a3ae !important;
-      padding-left: 4px;
-      font-size: 14px;
-      margin-top: -2px;
-    }
-
-    .recharts-tooltip-label {
-      color: ${(props) => props.theme.colors.cadet};
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .recharts-default-legend {
-      margin-top: 16px !important;
-    }
-
-    .recharts-legend-wrapper {
-      border-top: 1px solid ${(props) => props.theme.colors.aliceBlue};
-      margin-bottom: -16px;
-    }
-
     /* custom legend */
     .custom-legend-item-text-group {
       display: flex;
