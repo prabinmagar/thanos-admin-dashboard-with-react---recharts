@@ -1,3 +1,4 @@
+import { REVENUE_DATA } from "../../../data/mockData";
 import { BlockContentWrap, BlockTitle } from "../../../styles/global/default";
 import { RevenueWrap } from "./Revenue.styles";
 import {
@@ -10,44 +11,6 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-
-const data = [
-  {
-    day: "Mon",
-    online: 14,
-    offline: 12.5,
-  },
-  {
-    day: "Tue",
-    online: 17,
-    offline: 12,
-  },
-  {
-    day: "Wed",
-    online: 6,
-    offline: 23,
-  },
-  {
-    day: "Thu",
-    online: 16,
-    offline: 7,
-  },
-  {
-    day: "Fri",
-    online: 13,
-    offline: 12,
-  },
-  {
-    day: "Sat",
-    online: 17,
-    offline: 13,
-  },
-  {
-    day: "Sun",
-    online: 21,
-    offline: 12,
-  },
-];
 
 const formatTooltipValue = (value) => {
   return `${value} sales`;
@@ -74,7 +37,7 @@ const Revenue = () => {
           <BarChart
             width={500}
             height={300}
-            data={data}
+            data={REVENUE_DATA}
             margin={{
               top: 5,
               right: 5,

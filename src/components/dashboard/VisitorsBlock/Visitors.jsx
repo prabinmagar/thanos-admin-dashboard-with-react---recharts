@@ -13,71 +13,7 @@ import {
 import { BlockContentWrap, BlockTitle } from "../../../styles/global/default";
 import PropTypes from "prop-types";
 import { VisitorsBlockWrap } from "./Visitors.styles";
-
-const data = [
-  { month: "Jan", new_customer: 50, loyal_customer: 70, unique_customer: 120 },
-  {
-    month: "Feb",
-    new_customer: 140,
-    loyal_customer: 130,
-    unique_customer: 140,
-  },
-  {
-    month: "Mar",
-    new_customer: 160,
-    loyal_customer: 160,
-    unique_customer: 140,
-  },
-  {
-    month: "Apr",
-    new_customer: 180,
-    loyal_customer: 200,
-    unique_customer: 210,
-  },
-  {
-    month: "May",
-    new_customer: 190,
-    loyal_customer: 280,
-    unique_customer: 220,
-  },
-  {
-    month: "Jun",
-    new_customer: 200,
-    loyal_customer: 330,
-    unique_customer: 230,
-  },
-  {
-    month: "Jul",
-    new_customer: 310,
-    loyal_customer: 320,
-    unique_customer: 240,
-  },
-  {
-    month: "Aug",
-    new_customer: 300,
-    loyal_customer: 310,
-    unique_customer: 230,
-  },
-  {
-    month: "Sept",
-    new_customer: 180,
-    loyal_customer: 330,
-    unique_customer: 160,
-  },
-  {
-    month: "Oct",
-    new_customer: 160,
-    loyal_customer: 180,
-    unique_customer: 170,
-  },
-  {
-    month: "Nov",
-    new_customer: 140,
-    loyal_customer: 220,
-    unique_customer: 150,
-  },
-  { month: "Dec", new_customer: 120, loyal_customer: 70, unique_customer: 130 },
-];
+import { VISITORS_DATA } from "../../../data/mockData";
 
 const formatLegendValue = (value) => {
   return value.replace("_", " ");
@@ -122,7 +58,7 @@ const VisitorsBlock = () => {
       <BlockContentWrap className="line-chart">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart
-            data={data}
+            data={VISITORS_DATA}
             margin={{
               top: 10,
               right: 5,

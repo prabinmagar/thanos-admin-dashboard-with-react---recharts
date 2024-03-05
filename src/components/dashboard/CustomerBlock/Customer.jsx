@@ -7,59 +7,50 @@ import {
 } from "recharts";
 import { CustomerWrap } from "./Customer.styles";
 import { BlockContentWrap, BlockTitle } from "../../../styles/global/default";
-
-const data = [
-  {
-    name: "A",
-    last_month: 400,
-    this_month: 240,
-  },
-  {
-    name: "B",
-    last_month: 300,
-    this_month: 139,
-  },
-  {
-    name: "C",
-    last_month: 400,
-    this_month: 180,
-  },
-  {
-    name: "D",
-    last_month: 278,
-    this_month: 190,
-    amt: 2000,
-  },
-  {
-    name: "E",
-    last_month: 189,
-    this_month: 480,
-  },
-  {
-    name: "F",
-    last_month: 239,
-    this_month: 380,
-  },
-  {
-    name: "G",
-    last_month: 349,
-    this_month: 430,
-  },
-];
+import { CUSTOMER_DATA } from "../../../data/mockData";
+import PropTypes from "prop-types";
 
 const formatLegendValue = (value, name) => {
   const initialVal = 0;
-  const totalVal = data.reduce((accumulator, currentValue) => {
+  const totalVal = CUSTOMER_DATA.reduce((accumulator, currentValue) => {
     if (Object.keys(currentValue).includes(name.dataKey)) {
       return accumulator + currentValue[name.dataKey];
     }
   }, initialVal);
+
   return (
     <span className="custom-legend-item-text-group">
       <span className="custom-legend-item-text">{value.replace("_", " ")}</span>
       <span className="custom-legend-item-text">${totalVal}</span>
     </span>
   );
+};
+
+const CustomTooltipContent = ({ payload }) => {
+  if (!payload || !payload.length) return null;
+
+  return (
+    <div className="custom-recharts-tooltip">
+      <p className="recharts-tooltip-label">{payload[0].payload?.month}</p>
+      <ul className="recharts-tooltip-item-list">
+        {payload?.map((payloadItem, index) => {
+          return (
+            <li key={index}>
+              {formatTooltipValue(payloadItem.name, payloadItem.value)}
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
+};
+
+CustomTooltipContent.propTypes = {
+  payload: PropTypes.any,
+};
+
+const formatTooltipValue = (value, name) => {
+  return `${value.replace("_", " ")}: ${name}`;
 };
 
 const Customer = () => {
@@ -75,7 +66,7 @@ const Customer = () => {
           <AreaChart
             width={730}
             height={250}
-            data={data}
+            data={CUSTOMER_DATA}
             margin={{ top: 10, right: 0, left: 0, bottom: 0 }}
           >
             <defs>
@@ -88,7 +79,7 @@ const Customer = () => {
                 <stop offset="95%" stopColor="#07E098" stopOpacity={0} />
               </linearGradient>
             </defs>
-            <Tooltip />
+            <Tooltip content={<CustomTooltipContent />} />
             <Area
               type="monotone"
               dataKey="last_month"

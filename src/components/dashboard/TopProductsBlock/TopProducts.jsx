@@ -1,32 +1,6 @@
+import { TOP_PRODUCTS_DATA } from "../../../data/mockData";
 import { BlockTitle } from "../../../styles/global/default";
 import { TopProductsWrap } from "./TopProducts.styles";
-
-const data = [
-  {
-    id: 1,
-    name: "Home Decor Range",
-    popularityPercent: 70,
-    salesPercent: 45,
-  },
-  {
-    id: 2,
-    name: "Disney Princess Pink Bag 18'",
-    popularityPercent: 60,
-    salesPercent: 29,
-  },
-  {
-    id: 3,
-    name: "Bathroom Essentials",
-    popularityPercent: 50,
-    salesPercent: 18,
-  },
-  {
-    id: 4,
-    name: "Apple Smartwatches",
-    popularityPercent: 30,
-    salesPercent: 25,
-  },
-];
 
 const TopProducts = () => {
   return (
@@ -47,7 +21,7 @@ const TopProducts = () => {
             </tr>
           </thead>
           <tbody>
-            {data?.map((progressItem, index) => {
+            {TOP_PRODUCTS_DATA?.map((progressItem, index) => {
               return (
                 <tr key={progressItem.id}>
                   <td>{index + 1}</td>

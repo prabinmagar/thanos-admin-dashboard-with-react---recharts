@@ -1,48 +1,11 @@
+import { VOLUME_SERVICE_DATA } from "../../../data/mockData";
 import { BlockContentWrap, BlockTitle } from "../../../styles/global/default";
 import { VolumeServiceWrap } from "./VolumeService.styles";
 import { BarChart, Bar, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
-const data = [
-  {
-    name: "A",
-    volume: 400,
-    services: 240,
-  },
-  {
-    name: "B",
-    volume: 300,
-    services: 139,
-  },
-  {
-    name: "C",
-    volume: 200,
-    services: 980,
-  },
-  {
-    name: "D",
-    volume: 278,
-    services: 390,
-  },
-  {
-    name: "E",
-    volume: 189,
-    services: 480,
-  },
-  {
-    name: "F",
-    volume: 239,
-    services: 380,
-  },
-  {
-    name: "G",
-    volume: 349,
-    services: 430,
-  },
-];
-
 const formatLegendValue = (name, legendObj) => {
   const initialVal = 0;
-  const totalVal = data.reduce((accumulator, dataItem) => {
+  const totalVal = VOLUME_SERVICE_DATA.reduce((accumulator, dataItem) => {
     if (Object.keys(dataItem).includes(legendObj.dataKey)) {
       return accumulator + dataItem[legendObj.dataKey];
     }
@@ -69,7 +32,7 @@ const VolumeService = () => {
           <BarChart
             width={500}
             height={300}
-            data={data}
+            data={VOLUME_SERVICE_DATA}
             margin={{
               top: 5,
               right: 5,

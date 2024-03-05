@@ -2,44 +2,7 @@ import { Bar, BarChart, ResponsiveContainer, Tooltip, XAxis } from "recharts";
 import { TargetRealityWrap } from "./TargetReality.styles";
 import { BlockContentWrap, BlockTitle } from "../../../styles/global/default";
 import { Icons } from "../../../assets/icons";
-
-const data = [
-  {
-    month: "Jan",
-    reality: 60,
-    target: 80,
-  },
-  {
-    month: "Feb",
-    reality: 55,
-    target: 75,
-  },
-  {
-    month: "Mar",
-    reality: 40,
-    target: 90,
-  },
-  {
-    month: "Apr",
-    reality: 60,
-    target: 70,
-  },
-  {
-    month: "May",
-    reality: 100,
-    target: 75,
-  },
-  {
-    month: "Jun",
-    reality: 100,
-    target: 75,
-  },
-  {
-    month: "Jul",
-    reality: 100,
-    target: 75,
-  },
-];
+import { TARGET_REALITY_DATA } from "../../../data/mockData";
 
 const formatTooltipValue = (value) => {
   return `${value} sales`;
@@ -56,7 +19,7 @@ const TargetReality = () => {
       <BlockContentWrap className="bar-chart">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
-            data={data}
+            data={TARGET_REALITY_DATA}
             margin={{
               top: 5,
               right: 5,

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { Icons } from "../../assets/icons";
+import { REST_COUNTRIES_API_URL } from "../../constants/apiUrl";
 
 const AppBarLang = () => {
   const DEFAULT_COUNTRY = "United States";
@@ -13,9 +14,7 @@ const AppBarLang = () => {
   useEffect(() => {
     const fetchCountryData = async () => {
       try {
-        const response = await axios.get(
-          "https://restcountries.com/v3.1/all?fields=name,flags,languages"
-        );
+        const response = await axios.get(REST_COUNTRIES_API_URL);
         const sortedCountries = response.data.sort((a, b) =>
           a.name.common.localeCompare(b.name.common)
         );
@@ -26,7 +25,7 @@ const AppBarLang = () => {
         );
 
         if (defaultCountry) {
-          let langKey = Object.keys(defaultCountry.languages)[0];
+          let langKey = Object.keys(defaultCountry?.languages)[0];
           setSelectedCountry({
             country: defaultCountry.name.common,
             flag: defaultCountry.flags.png,
@@ -83,29 +82,33 @@ const AppBarLang = () => {
           <div>Data loading ...</div>
         ) : (
           <div className="drop-list-wrapper scrollbar">
-            {countries?.map((country) => {
-              if (Object.keys(country.languages)) {
-                const langKey = Object.keys(country.languages)[0];
-                return (
-                  <div
-                    className="drop-item"
-                    key={country.name.common}
-                    onClick={() =>
-                      countrySelectHandler(
-                        country?.name?.common,
-                        country?.flags?.png,
-                        langKey
-                      )
-                    }
-                  >
-                    <span className="drop-item-img">
-                      <img src={country.flags.png} alt="" />
-                    </span>
-                    <span className="drop-item-text">{langKey}</span>
-                  </div>
-                );
-              }
-            })}
+            {countries?.length > 0 ? (
+              countries?.map((country) => {
+                if (country?.languages && Object.keys(country?.languages)) {
+                  const langKey = Object.keys(country.languages)[0];
+                  return (
+                    <div
+                      className="drop-item"
+                      key={country.name.common}
+                      onClick={() =>
+                        countrySelectHandler(
+                          country?.name?.common,
+                          country?.flags?.png,
+                          langKey
+                        )
+                      }
+                    >
+                      <span className="drop-item-img">
+                        <img src={country.flags.png} alt="" />
+                      </span>
+                      <span className="drop-item-text">{langKey}</span>
+                    </div>
+                  );
+                }
+              })
+            ) : (
+              <p>No data!</p>
+            )}
           </div>
         )}
       </div>

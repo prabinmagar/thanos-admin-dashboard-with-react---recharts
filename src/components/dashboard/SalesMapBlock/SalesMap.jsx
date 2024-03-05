@@ -2,6 +2,7 @@ import { SalesMapWrap } from "./SalesMap.styles";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 import geoJson from "../../../data/world-50m.v1.json";
 import { BlockContentWrap, BlockTitle } from "../../../styles/global/default";
+import { SALES_MAP_DATA } from "../../../data/mockData";
 
 // Mapping of color names to their respective hex codes
 const COLOR_MAP = {
@@ -12,63 +13,10 @@ const COLOR_MAP = {
   yellow: "#ffcf00",
 };
 
-const data = [
-  {
-    countryId: "840",
-    countryName: "United States of America",
-    fillColor: "violet",
-  },
-  {
-    countryId: "250",
-    countryName: "France",
-    fillColor: "violet",
-  },
-  {
-    countryId: "156",
-    countryName: "China",
-    fillColor: "yellow",
-  },
-  {
-    countryId: "276",
-    countryName: "Germany",
-    fillColor: "emerald",
-  },
-  {
-    countryId: "643",
-    countryName: "Russia",
-    fillColor: "yellow",
-  },
-  {
-    countryId: "764",
-    countryName: "Thailand",
-    fillColor: "red",
-  },
-  {
-    countryId: "356",
-    countryName: "India",
-    fillColor: "dodgerBlue",
-  },
-  {
-    countryId: "036",
-    countryName: "Australia",
-    fillColor: "red",
-  },
-  {
-    countryId: "124",
-    countryName: "Canada",
-    fillColor: "dodgerBlue",
-  },
-  {
-    countryId: "634",
-    countryName: "Quatar",
-    fillColor: "emerald",
-  },
-];
-
 const getFillColor = (fillCode) => COLOR_MAP[fillCode] || "#ececec";
 
 const findByCountryId = (countryId) => {
-  const matchedCountry = data.find(
+  const matchedCountry = SALES_MAP_DATA.find(
     (country) => country.countryId === countryId
   );
   return matchedCountry ? getFillColor(matchedCountry.fillColor) : "#ececec";
